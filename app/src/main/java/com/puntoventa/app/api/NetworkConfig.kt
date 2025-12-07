@@ -7,7 +7,7 @@ package com.puntoventa.app.api
  */
 object NetworkConfig {
     // Cambia esto por tu URL de Railway
-    const val BASE_URL = "https://tu-proyecto.railway.app"
+    const val BASE_URL = "https://api-production-aa3d.up.railway.app/"
     
     // O si estás probando localmente:
     // const val BASE_URL = "http://10.0.2.2:8000" // Para emulador Android

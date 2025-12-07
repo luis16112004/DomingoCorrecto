@@ -37,6 +37,30 @@
         <activity
             android:name=".ui.providers.AddProviderActivity"
             android:exported="false" />
+        
+        <activity
+            android:name=".ui.products.ProductsActivity"
+            android:exported="false" />
+        
+        <activity
+            android:name=".ui.products.AddProductActivity"
+            android:exported="false" />
+        
+        <activity
+            android:name=".ui.customers.CustomersActivity"
+            android:exported="false" />
+        
+        <activity
+            android:name=".ui.customers.AddCustomerActivity"
+            android:exported="false" />
+        
+        <activity
+            android:name=".ui.sales.SalesActivity"
+            android:exported="false" />
+        
+        <activity
+            android:name=".ui.sales.CreateSaleActivity"
+            android:exported="false" />
             
     </application>
 
