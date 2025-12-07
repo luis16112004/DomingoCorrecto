@@ -10,6 +10,9 @@ import com.puntoventa.app.R
 import com.puntoventa.app.api.RetrofitClient
 import com.puntoventa.app.databinding.ActivityProvidersBinding
 import com.puntoventa.app.MainActivity
+import com.puntoventa.app.ui.products.ProductsActivity
+import com.puntoventa.app.ui.customers.CustomersActivity
+import com.puntoventa.app.ui.sales.SalesActivity
 import com.puntoventa.app.utils.TokenManager
 import kotlinx.coroutines.launch
 
@@ -54,6 +57,18 @@ class ProvidersActivity : AppCompatActivity() {
         
         binding.btnLogout.setOnClickListener {
             logout()
+        }
+        
+        binding.btnProducts.setOnClickListener {
+            startActivity(Intent(this, ProductsActivity::class.java))
+        }
+        
+        binding.btnCustomers.setOnClickListener {
+            startActivity(Intent(this, CustomersActivity::class.java))
+        }
+        
+        binding.btnSales.setOnClickListener {
+            startActivity(Intent(this, SalesActivity::class.java))
         }
     }
     

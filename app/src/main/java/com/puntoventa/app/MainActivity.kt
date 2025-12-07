@@ -12,6 +12,7 @@ import com.puntoventa.app.ui.providers.ProvidersActivity
 import com.puntoventa.app.ui.register.RegisterActivity
 import com.puntoventa.app.utils.TokenManager
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -78,7 +79,21 @@ class MainActivity : AppCompatActivity() {
                     navigateToProviders()
                 } else {
                     val errorBody = response.errorBody()?.string() ?: "Error desconocido"
-                    Toast.makeText(this@MainActivity, "Error: $errorBody", Toast.LENGTH_LONG).show()
+                    // Intentar parsear el error JSON
+                    val errorMessage = if (errorBody.contains("INVALID_LOGIN_CREDENTIALS")) {
+                        "Credenciales incorrectas. Por favor verifica tu email y contraseña, o regístrate si no tienes cuenta."
+                    } else if (errorBody.contains("error")) {
+                        // Extraer mensaje del JSON si es posible
+                        try {
+                            val jsonObject = JSONObject(errorBody)
+                            jsonObject.optString("error", "Error al iniciar sesión")
+                        } catch (e: Exception) {
+                            "Error al iniciar sesión. Verifica tus credenciales."
+                        }
+                    } else {
+                        "Error al iniciar sesión. Verifica tus credenciales."
+                    }
+                    Toast.makeText(this@MainActivity, errorMessage, Toast.LENGTH_LONG).show()
                 }
             } catch (e: Exception) {
                 Toast.makeText(this@MainActivity, "Error de conexión: ${e.message}", Toast.LENGTH_LONG).show()

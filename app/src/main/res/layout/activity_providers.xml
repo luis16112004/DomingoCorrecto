@@ -36,6 +36,46 @@
                 app:layout_constraintTop_toTopOf="@+id/toolbar"
                 app:layout_constraintBottom_toBottomOf="@+id/toolbar" />
 
+            <LinearLayout
+                android:id="@+id/llNavigation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+                <Button
+                    android:id="@+id/btnProducts"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Productos"
+                    android:layout_marginEnd="4dp"
+                    android:padding="12dp" />
+
+                <Button
+                    android:id="@+id/btnCustomers"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Clientes"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:padding="12dp" />
+
+                <Button
+                    android:id="@+id/btnSales"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Ventas"
+                    android:layout_marginStart="4dp"
+                    android:padding="12dp" />
+            </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvProviders"
                 android:layout_width="0dp"
@@ -44,7 +84,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                app:layout_constraintTop_toBottomOf="@+id/llNavigation" />
 
             <TextView
                 android:id="@+id/tvEmpty"
