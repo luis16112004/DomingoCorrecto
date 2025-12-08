@@ -75,6 +75,8 @@ class CreateSaleActivity : AppCompatActivity() {
                 val response = RetrofitClient.apiService.getProducts("Bearer $token")
                 if (response.isSuccessful && response.body() != null) {
                     products = response.body()!!.data
+                } else if (response.code() == 404) {
+                    Toast.makeText(this@CreateSaleActivity, "El endpoint de productos no está disponible. No podrás agregar productos a la venta.", Toast.LENGTH_LONG).show()
                 }
             } catch (e: Exception) {
                 // Error silencioso, se puede continuar
@@ -196,8 +198,13 @@ class CreateSaleActivity : AppCompatActivity() {
                     Toast.makeText(this@CreateSaleActivity, "Venta creada exitosamente", Toast.LENGTH_SHORT).show()
                     finish()
                 } else {
-                    val errorBody = response.errorBody()?.string() ?: "Error desconocido"
-                    Toast.makeText(this@CreateSaleActivity, "Error: $errorBody", Toast.LENGTH_LONG).show()
+                    val errorMessage = if (response.code() == 404) {
+                        "El endpoint de ventas no está disponible en el servidor. Contacta al administrador para habilitarlo."
+                    } else {
+                        val errorBody = response.errorBody()?.string() ?: "Error desconocido (Código: ${response.code()})"
+                        "Error: $errorBody"
+                    }
+                    Toast.makeText(this@CreateSaleActivity, errorMessage, Toast.LENGTH_LONG).show()
                 }
             } catch (e: Exception) {
                 Toast.makeText(this@CreateSaleActivity, "Error de conexión: ${e.message}", Toast.LENGTH_LONG).show()
@@ -208,4 +215,5 @@ class CreateSaleActivity : AppCompatActivity() {
         }
     }
 }
+
 

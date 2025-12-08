@@ -59,15 +59,15 @@ class ProvidersActivity : AppCompatActivity() {
             logout()
         }
         
-        binding.btnProducts.setOnClickListener {
+        binding.cardProducts.setOnClickListener {
             startActivity(Intent(this, ProductsActivity::class.java))
         }
         
-        binding.btnCustomers.setOnClickListener {
+        binding.cardCustomers.setOnClickListener {
             startActivity(Intent(this, CustomersActivity::class.java))
         }
         
-        binding.btnSales.setOnClickListener {
+        binding.cardSales.setOnClickListener {
             startActivity(Intent(this, SalesActivity::class.java))
         }
     }

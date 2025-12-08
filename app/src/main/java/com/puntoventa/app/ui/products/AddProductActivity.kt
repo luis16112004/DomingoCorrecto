@@ -89,8 +89,13 @@ class AddProductActivity : AppCompatActivity() {
                     Toast.makeText(this@AddProductActivity, "Producto creado exitosamente", Toast.LENGTH_SHORT).show()
                     finish()
                 } else {
-                    val errorBody = response.errorBody()?.string() ?: "Error desconocido"
-                    Toast.makeText(this@AddProductActivity, "Error: $errorBody", Toast.LENGTH_LONG).show()
+                    val errorMessage = if (response.code() == 404) {
+                        "El endpoint de productos no está disponible en el servidor. Contacta al administrador para habilitarlo."
+                    } else {
+                        val errorBody = response.errorBody()?.string() ?: "Error desconocido (Código: ${response.code()})"
+                        "Error: $errorBody"
+                    }
+                    Toast.makeText(this@AddProductActivity, errorMessage, Toast.LENGTH_LONG).show()
                 }
             } catch (e: Exception) {
                 Toast.makeText(this@AddProductActivity, "Error de conexión: ${e.message}", Toast.LENGTH_LONG).show()
@@ -101,4 +106,5 @@ class AddProductActivity : AppCompatActivity() {
         }
     }
 }
+
 

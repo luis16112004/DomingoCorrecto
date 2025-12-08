@@ -73,7 +73,14 @@ class ProductsActivity : AppCompatActivity() {
                         binding.tvEmpty.visibility = android.view.View.GONE
                     }
                 } else {
-                    Toast.makeText(this@ProductsActivity, "Error al cargar productos", Toast.LENGTH_SHORT).show()
+                    val errorMessage = if (response.code() == 404) {
+                        "El endpoint de productos no está disponible en el servidor. Contacta al administrador."
+                    } else {
+                        "Error al cargar productos (Código: ${response.code()})"
+                    }
+                    Toast.makeText(this@ProductsActivity, errorMessage, Toast.LENGTH_LONG).show()
+                    binding.tvEmpty.visibility = android.view.View.VISIBLE
+                    binding.tvEmpty.text = "No se pudo cargar la lista de productos"
                 }
             } catch (e: Exception) {
                 Toast.makeText(this@ProductsActivity, "Error de conexión: ${e.message}", Toast.LENGTH_LONG).show()
@@ -89,4 +96,5 @@ class ProductsActivity : AppCompatActivity() {
         loadProducts()
     }
 }
+
 
